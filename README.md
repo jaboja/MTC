@@ -3,12 +3,17 @@ A Coordinated Mars Time (MTC) timezone for Python.
 
 # Warning
 This timezone is not 100% pytz compatible. Actually it is impossible to create a pytz timezone for other celestial body
-as pytz assumes timezones to have some UTC offset (read: it was designed for terrestial timezones). For that reason
+as pytz assumes timezones to have some UTC offset (read: it was designed for terrestial timezones).
+Also pytz timezones return date-time as the `datetime` objects which have strict limit on months not exceeding 12.
+As Martian time does not and can not (for obvious reasons) use terrestial calendar, I decided to create
+a new `martiandatetime` class which mimics `datetime`, but is not instance of it. Also, for above reasons
 some methods of `martiandatetime` objects either remain unimplemented or return dumb values (like NaN UTC offset).
 Nevertheless, it should be usable in common use cases (like printing current local time on Mars).
 
 By the way, UTC offset is NaN yet I have introduced MTC offset instead,
 so you shall get explicit error if you try to add UTC offset to MTC (which is meaningless).
+
+This class does not implement any calendar. The date is reduced to sol number.
 
 # Usage
 
